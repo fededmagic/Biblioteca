@@ -25,7 +25,7 @@
         </ul>
         @endif
 
-        <form method = "POST" action = "{{ route('admin.storeByEdit', $viewData["book"]->getId()) }}" enctype = "multipart/form-data">
+        <form method = "POST" action = "{{ route('admin.store', $viewData["book"]->getId()) }}" enctype = "multipart/form-data">
 
             @csrf
             <div class = "row">

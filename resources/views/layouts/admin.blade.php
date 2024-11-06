@@ -22,6 +22,7 @@
       <hr />
       <ul class="nav flex-column">
         <li>
+          <a href="{{route('home.index')}}" class="nav-link text-white">- Ritorna alla home</a>
           <a href="{{route('admin.index')}}" class="nav-link text-white">- Admin - Libri</a>
         </li>
       </ul>

@@ -25,7 +25,7 @@
         </ul>
         @endif
 
-        <form method = "POST" action = "{{ route('admin.store') }}" enctype = "multipart/form-data">
+        <form method = "POST" action = "{{ route('admin.add') }}" enctype = "multipart/form-data">
 
             @csrf
             <div class = "row">
@@ -46,7 +46,7 @@
                         <label class = "col-lg-2 col-md-6 col-sm-12 col-form-label">Autore:</label>
 
                         <div class = "col-lg-10 col-md-6 col-sm-12">
-                            <input type = "number" value = "{{old('author')}}" name = "author" class = "form-control">
+                            <input type = "text" value = "{{old('author')}}" name = "author" class = "form-control">
                         </div>
 
                     </div>
