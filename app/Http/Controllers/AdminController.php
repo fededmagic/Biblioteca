@@ -12,18 +12,48 @@ class AdminController extends Controller
         $viewData = [];
         $viewData["title"] = "Admin biblioteca";
         $viewData["subtitle"] = "Admin biblioteca";
+        $viewData["topics"] = AdminController::topics();
 
         $viewData["books"] = Book::all();
 
         return view("admin.index")->with("viewData", $viewData);
     }
 
-    public function store(Request $request) {
+    public function storeByEdit(Request $request, $id) {
 
+        $request -> validate([
+            "name" => "required|max:255",
+            "author" => "required|max:255",
+            "year" => "required|numeric|gt:0",
+            "topic" => "required",
+            "picture" => "image",
+        ]);
+
+        $book = Book::findOrFail($id);
+        $book->setName($request->input("name"));
+        $book->setAuthor($request->input("author"));
+        $book->setTopic($request->input("topic"));
+        $book->setYear($request->input("topic"));
+
+        $book->save();
+
+        if($request->hasFile("picture")) {
+
+            $imageName = $book->getName().".".$request->file("picture")->extension();
+            Storage::disk('public')->put(
+                $imageName, 
+                file_get_contents($request->file("picture")->getRealPath()));
+            
+            $book->setImage($imageName);
+            $book->save();
+        }
+
+        return back();
     }
 
     public function add(Request $request) {
-
+        
+        
     }
 
     public function edit($id) {
@@ -31,6 +61,7 @@ class AdminController extends Controller
         $viewData = [];
         $viewData["title"] = "Admin biblioteca";
         $viewData["subtitle"] = "Admin biblioteca";
+        $viewData["topics"] = AdminController::topics();
 
         $viewData["book"] = Book::findOrFail($id);
 
@@ -42,5 +73,11 @@ class AdminController extends Controller
 
         Book::destroy($id);
         return back();
+    }
+
+    private function topics() {
+
+        return [ "Magia generale", "Cartomagia", "Monetomagia", "Mentalismo",
+            "Magia da scena", "Mentalismo", "Matemagia", "Altro"];
     }
 }

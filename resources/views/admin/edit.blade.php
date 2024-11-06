@@ -8,7 +8,7 @@
 
     <div class = "card-header">
 
-        <h5>Aggiungere libri</h5>
+        <h5>Modificare libri</h5>
 
     </div>
 
@@ -25,7 +25,7 @@
         </ul>
         @endif
 
-        <form method = "POST" action = "{{ route('admin.add') }}" enctype = "multipart/form-data">
+        <form method = "POST" action = "{{ route('admin.storeByEdit', $viewData["book"]->getId()) }}" enctype = "multipart/form-data">
 
             @csrf
             <div class = "row">
@@ -35,7 +35,7 @@
                         <label class = "col-lg-2 col-md-6 col-sm-12 col-form-label">Titolo:</label>
                     
                         <div class = "col-lg-10 col-md-6 col-sm-12">
-                            <input type = "text" value = "{{old('name')}}" name = "name" class = "form-control">
+                            <input type = "text" value = "{{ $viewData["book"]->getName() }}" name = "name" class = "form-control">
                         </div>
 
                     </div>
@@ -46,7 +46,7 @@
                         <label class = "col-lg-2 col-md-6 col-sm-12 col-form-label">Autore:</label>
 
                         <div class = "col-lg-10 col-md-6 col-sm-12">
-                            <input type = "number" value = "{{old('author')}}" name = "author" class = "form-control">
+                            <input type = "text" value = "{{ $viewData["book"]->getAuthor() }}" name = "author" class = "form-control">
                         </div>
 
                     </div>
@@ -60,14 +60,10 @@
 
                         <div class = "col-lg-10 col-md-6 col-sm-12">
                             <select class = "form-select" name = "topic" id = "topic">
-                                <option selected value = "Magia generale">Magia generale</option>
-                                <option value = "Cartomagia">Cartomagia</option>
-                                <option value = "Monetomagia">Monetomagia</option>
-                                <option value = "Mentalismo">Mentalismo</option>
-                                <option value = "Magia da scena">Magia da scena</option>
-                                <option value = "Mentalismo">Mentalismo</option>
-                                <option value = "Matemagia">Matemagia</option>
-                                <option value = "Altro">Altro</option>
+                                @foreach($viewData["topics"] as $topic)
+                                    <option value = "{{ $topic }}" 
+                                    @if($topic == $viewData["book"]->getTopic()) selected @endif
+                                    >{{ $topic }}</option> @endforeach
                             </select>
                         </div>
 
@@ -79,7 +75,7 @@
                         <label class = "col-lg-2 col-md-6 col-sm-12 col-form-label">Immagine:</label>
                     
                         <div class = "col-lg-10 col-md-6 col-sm-12">
-                            <input type = "file" value = "{{old('picture')}}" name = "picture" class = "form-control">
+                            <input type = "file" value = "{{ $viewData["book"]->getPicture() }}" name = "picture" class = "form-control">
                         </div>
 
                     </div>
@@ -90,7 +86,7 @@
                         <label class = "col-lg-2 col-md-6 col-sm-12 col-form-label">Anno di pubblicatione:</label>
 
                         <div class = "col-lg-10 col-md-6 col-sm-12">
-                            <input type = "number" value = "{{old('year')}}" name = "year" class = "form-control">
+                            <input type = "number" value = "{{ $viewData["book"]->getYear() }}" name = "year" class = "form-control">
                         </div>
 
                     </div>
