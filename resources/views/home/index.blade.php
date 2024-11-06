@@ -20,8 +20,7 @@
                 <th>Foto</th>
                 <th>Titolo</th>
                 <th>Autore</th>
-                <th>Categoria</th>
-                <th>Dettagli</th>
+                <th>...</th>
             </tr>
 
             @foreach($viewData["books"] as $book) 
@@ -31,7 +30,6 @@
                     </td>
                     <td>{{ $book->getName() }}</td>
                     <td>{{ $book->getAuthor() }}</td>
-                    <td>{{ $book->getTopic() }}</td>
                     <td><a class = "btn bg-primary text-white" href = "{{route('home.show', ['id' => $book->getId()])}}"><i class="bi bi-book"></i></a></td>
                 </tr>
             @endforeach
