@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get("/admin", "App\http\controllers\AdminController@index")->name("admin.index");
 Route::post("/admin/add", "App\http\controllers\AdminController@add")->name("admin.add");
 Route::delete("/admin/delete/{id}", "App\http\controllers\AdminController@delete")->name("admin.delete");
@@ -21,3 +23,6 @@ Route::post("/admin/store/{id}", "App\http\controllers\AdminController@store")->
 
 Route::get("/", "App\http\controllers\HomeController@index")->name("home.index");
 Route::get("/{id}", "App\http\controllers\HomeController@show")->name("home.show");
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
