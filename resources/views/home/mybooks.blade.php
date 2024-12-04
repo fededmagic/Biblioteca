@@ -8,7 +8,7 @@
 
     <div class = "card-header">
 
-        <h5>Libri del circolo</h5>
+        <h5>I miei libri</h5>
 
     </div>
 
@@ -20,17 +20,17 @@
                 <th>Foto</th>
                 <th>Titolo</th>
                 <th>Autore</th>
-                <th>...</th>
+                <th>Consegna</th>
             </tr>
 
             @foreach($viewData["books"] as $book) 
                 <tr>
                     <td>
-                        <img src = "{{asset("/storage/" .  $book->getPicture())}}" width = 100px class = "img-fluid rounded-start">
+                        <img src = "{{asset("/storage/" . $book->getPicture())}}" width = 100px class = "img-fluid rounded-start">
                     </td>
                     <td>{{ $book->getName() }}</td>
                     <td>{{ $book->getAuthor() }}</td>
-                    <td><a class = "btn bg-primary text-white" href = "{{route('home.show', ['id' => $book->getId()])}}"><i class="bi bi-book"></i></a></td>
+                    <td><a class = "btn bg-primary text-white" href = ""><i class="bi bi-capslock"></i></a></td>
                 </tr>
             @endforeach
 

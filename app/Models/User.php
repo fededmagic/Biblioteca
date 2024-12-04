@@ -88,4 +88,11 @@ class User extends Authenticatable
         $this->attributes['updated_at'] = $updatedAt;
     }
 
+    public function borrowedBooks(): HasMany{
+        return $this->hasMany(UserBook::class);
+    }
+    public function getBorrowedBooks(){
+        return $this->borrowedBooks;
+    } 
+
 }

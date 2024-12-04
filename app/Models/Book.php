@@ -23,4 +23,11 @@ class Book extends Model
     public function setPicture($picture) { $this->attributes['picture'] = $picture; }
     public function setCreatedAt($created_at) { $this->attributes['created_at'] = $created_at; }
     public function setUpdatedAt($updated_at) { $this->attributes['updated_at'] = $updated_at; }
+
+    public function usersBook(): HasMany{
+        return $this->hasMany(UserBook::class);
+    }
+    public function getUsersBook(){
+        return $this->usersBook;
+    } 
 }

@@ -19,12 +19,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
-          <a class="nav-link active" href="{{route("home.index")}}">Home</a>
-          <a class="nav-link active" href="https://www.blinkcircolomagico.it/" target="blank">Il circolo</a>
           <div class="vr bg-white mx-2 d-none d-lg-block"></div>
             @guest
             <a class="nav-link active" href="{{ route('login') }}">Login</a>
-            <a class="nav-link active" href="{{ route('register') }}">Register</a>
+            <a class="nav-link active" href="{{ route('register') }}">Registrati</a>
             @else
             <form id="logout" action="{{ route('logout') }}" method="POST">
             <a role="button" class="nav-link active"
@@ -32,6 +30,14 @@
             @csrf
             </form>
             @endguest 
+            @if(Auth::user() && Auth::user()->getRole()=='admin')
+            <a class="nav-link active" href="{{ route("home.mybooks") }}">I miei libri</a>
+            @endif
+            @if(Auth::user()->getRole()=='admin')
+            <a class="nav-link active" href="{{ route("admin.index") }}">Admin</a>
+            @endif
+          <a class="nav-link active" href="https://www.blinkcircolomagico.it/" target="blank">Il circolo</a>
+          <a class="nav-link active" href="{{route("home.index")}}">Home</a>
         </div>
       </div>
     </div>
