@@ -44,10 +44,14 @@
 
                     @csrf
                     <div class = "row">
-
+                        
+                        @if($viewData["status"] != 0)
+                        <p class="text-danger">Attualmente preso in prestito da {{$viewData["user"]}}</p>
+                        @else
                         <div class = "col-auto">
                             <button type = "submit" class = "btn btn-primary">Prendi in prestito</button>
                         </div>
+                        @endif
 
                     </div>
 

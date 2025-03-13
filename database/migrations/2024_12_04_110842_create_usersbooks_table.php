@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('usersBooks');
         Schema::create('usersBooks', function (Blueprint $table) {
             $table->id();
-            $table->integer("user_id");
+            $table->unsignedBigInteger("user_id");
             $table->foreign("user_id")->references("id")->on("users");
-            $table->integer("book_id");
+            $table->unsignedBigInteger("book_id");
             $table->foreign("book_id")->references("id")->on("books");
             $table->timestamp("expires_at");
-            $table->integer("status");
+            $table->integer("status")->default(0);
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usersbooks');
+        Schema::dropIfExists('usersBooks');
     }
 };

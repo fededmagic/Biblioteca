@@ -33,7 +33,7 @@
             @if(Auth::user() && Auth::user()->getRole()=='admin')
             <a class="nav-link active" href="{{ route("home.mybooks") }}">I miei libri</a>
             @endif
-            @if(Auth::user()->getRole()=='admin')
+            @if(Auth::user() && Auth::user()->getRole()=='admin')
             <a class="nav-link active" href="{{ route("admin.index") }}">Admin</a>
             @endif
           <a class="nav-link active" href="https://www.blinkcircolomagico.it/" target="blank">Il circolo</a>
